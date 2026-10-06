@@ -1,0 +1,1 @@
+-- Datos de prueba opcionales. La creación de usuarios se hace con `npm run seed` porque las contraseñas se almacenan con bcrypt.
