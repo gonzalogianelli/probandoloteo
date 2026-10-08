@@ -37,8 +37,11 @@ export class User {
     select: false,
   })
   passwordHash!: string;
+
+
  @Column({ type: "boolean", default: true })
 activo: boolean;
+
 
   @CreateDateColumn({ name: "created_at", type: "datetime", precision: 6 })
   createdAt!: Date;

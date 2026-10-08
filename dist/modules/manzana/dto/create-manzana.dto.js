@@ -35,50 +35,50 @@ __decorate([
     __metadata("design:type", String)
 ], CreateManzanaDto.prototype, "nombre", void 0);
 __decorate([
-    ApiPropertyOptional(),
+    ApiPropertyOptional({ example: "I" }),
     IsOptional(),
     IsString(),
     __metadata("design:type", Object)
 ], CreateManzanaDto.prototype, "circunscripcion", void 0);
 __decorate([
-    ApiPropertyOptional(),
+    ApiPropertyOptional({ example: "E" }),
     IsOptional(),
     IsString(),
     __metadata("design:type", Object)
 ], CreateManzanaDto.prototype, "seccion", void 0);
 __decorate([
-    ApiPropertyOptional(),
+    ApiPropertyOptional({ example: "70" }),
     IsOptional(),
     IsString(),
     __metadata("design:type", Object)
 ], CreateManzanaDto.prototype, "quinta", void 0);
 __decorate([
-    ApiPropertyOptional(),
+    ApiPropertyOptional({ example: "55" }),
     IsOptional(),
     IsString(),
     __metadata("design:type", Object)
 ], CreateManzanaDto.prototype, "parcela", void 0);
 __decorate([
-    ApiPropertyOptional(),
-    IsOptional(),
+    ApiPropertyOptional({ example: "Calle 48" }),
+    IsNotEmpty(),
     IsString(),
     __metadata("design:type", Object)
 ], CreateManzanaDto.prototype, "callePar1", void 0);
 __decorate([
-    ApiPropertyOptional(),
-    IsOptional(),
+    ApiPropertyOptional({ example: "Calle 50" }),
+    IsNotEmpty(),
     IsString(),
     __metadata("design:type", Object)
 ], CreateManzanaDto.prototype, "callePar2", void 0);
 __decorate([
-    ApiPropertyOptional(),
-    IsOptional(),
+    ApiPropertyOptional({ example: "Calle 61" }),
+    IsNotEmpty(),
     IsString(),
     __metadata("design:type", Object)
 ], CreateManzanaDto.prototype, "calleImpar1", void 0);
 __decorate([
-    ApiPropertyOptional(),
-    IsOptional(),
+    ApiPropertyOptional({ example: "Calle 63" }),
+    IsNotEmpty(),
     IsString(),
     __metadata("design:type", Object)
 ], CreateManzanaDto.prototype, "calleImpar2", void 0);

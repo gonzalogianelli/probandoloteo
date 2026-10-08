@@ -57,7 +57,6 @@ let UsuarioService = class UsuarioService {
             const user = this.users.create({
                 ...userData,
                 passwordHash: await bcrypt.hash(password, 10),
-                clientId: dto.clientId ?? null,
             });
             const saved = await this.users.save(user);
             const full = await this.users.findOneOrFail({

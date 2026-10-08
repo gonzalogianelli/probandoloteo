@@ -5,8 +5,8 @@ export declare class CreateManzanaDto {
     seccion?: string | null;
     quinta?: string | null;
     parcela?: string | null;
-    callePar1?: string | null;
-    callePar2?: string | null;
-    calleImpar1?: string | null;
-    calleImpar2?: string | null;
+    callePar1: string | null;
+    callePar2: string | null;
+    calleImpar1: string | null;
+    calleImpar2: string | null;
 }

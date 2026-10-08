@@ -31,7 +31,7 @@ __decorate([
 ], CreateLoteoDto.prototype, "descripcion", void 0);
 __decorate([
     ApiPropertyOptional({ example: "Balcarce, Buenos Aires" }),
-    IsOptional(),
+    IsNotEmpty(),
     IsString(),
     Length(0, 255),
     __metadata("design:type", Object)

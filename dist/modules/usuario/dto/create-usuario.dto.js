@@ -8,17 +8,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import { IsBoolean, IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, Length, Min, } from "class-validator";
+import { IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, Length, Min, } from "class-validator";
 export class CreateUsuarioDto {
     roleId;
-    clientId;
     nombre;
     apellido;
     dni;
     email;
     telefono;
     password;
-    activo;
 }
 __decorate([
     ApiProperty({ example: 1 }),
@@ -26,13 +24,6 @@ __decorate([
     Min(1),
     __metadata("design:type", Number)
 ], CreateUsuarioDto.prototype, "roleId", void 0);
-__decorate([
-    ApiPropertyOptional({ example: 1 }),
-    IsOptional(),
-    IsInt(),
-    Min(1),
-    __metadata("design:type", Object)
-], CreateUsuarioDto.prototype, "clientId", void 0);
 __decorate([
     ApiProperty({ example: "Juan" }),
     IsString(),
@@ -72,10 +63,4 @@ __decorate([
     Length(6, 100),
     __metadata("design:type", String)
 ], CreateUsuarioDto.prototype, "password", void 0);
-__decorate([
-    ApiPropertyOptional({ example: true }),
-    IsOptional(),
-    IsBoolean(),
-    __metadata("design:type", Boolean)
-], CreateUsuarioDto.prototype, "activo", void 0);
 //# sourceMappingURL=create-usuario.dto.js.map

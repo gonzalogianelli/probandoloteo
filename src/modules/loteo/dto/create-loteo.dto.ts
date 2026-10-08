@@ -12,16 +12,19 @@ export class CreateLoteoDto {
   @IsNotEmpty()
   @Length(2, 150)
   nombre!: string;
+
   @ApiPropertyOptional({ example: "Loteo residencial" })
   @IsOptional()
   @IsString()
   @Length(0, 255)
   descripcion?: string | null;
+
   @ApiPropertyOptional({ example: "Balcarce, Buenos Aires" })
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
   @Length(0, 255)
-  ubicacion?: string | null;
+  ubicacion: string | null;
+  
   @ApiPropertyOptional({ example: true })
   @IsOptional()
   @IsBoolean()
