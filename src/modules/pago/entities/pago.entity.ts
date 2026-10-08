@@ -1,11 +1,13 @@
 import {
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
 import type { Venta } from "../../venta/entities/venta.entity.js";
 import type { User } from "../../usuario/entities/user.entity.js";
@@ -75,6 +77,12 @@ export class Pago {
 
   @CreateDateColumn({ name: "created_at", type: "datetime", precision: 6 })
   createdAt!: Date;
+
+  @UpdateDateColumn({ name: "updated_at", type: "datetime", precision: 6 })
+  updatedAt!: Date;
+
+  @DeleteDateColumn({ name: "deleted_at", type: "datetime", precision: 6 })
+  deletedAt?: Date;
 
   @OneToMany("PagoMedio", "pago", { cascade: true })
   mediosPago?: PagoMedio[];
