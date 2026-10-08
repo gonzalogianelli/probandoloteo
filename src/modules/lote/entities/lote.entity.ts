@@ -54,24 +54,29 @@ export class Lote {
   @Column({ type: "enum", enum: LoteEstado, default: LoteEstado.LIBRE })
   estado!: LoteEstado;
 
-  @Column({ type: "varchar", length: 180, nullable: true })
-  direccion!: string | null;
-
   @Column({
-    name: "entre_calle_1",
+    name: "calle_1",
     type: "varchar",
     length: 180,
     nullable: true,
   })
-  entreCalle1!: string | null;
+  calle1!: string | null;
 
   @Column({
-    name: "entre_calle_2",
+    name: "calle_2",
     type: "varchar",
     length: 180,
     nullable: true,
   })
-  entreCalle2!: string | null;
+  calle2!: string | null;
+
+  @Column({
+    name: "calle_3",
+    type: "varchar",
+    length: 180,
+    nullable: true,
+  })
+  calle3!: string | null;
 
   @OneToMany("LoteServicio", "lote")
   servicios!: LoteServicio[];

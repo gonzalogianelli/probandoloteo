@@ -52,22 +52,23 @@ export class CreateLoteDto {
   @IsEnum(LoteEstado)
   estado?: LoteEstado;
 
-  @ApiPropertyOptional({ example: "Av. San Martín" })
-  @IsOptional()
-  @IsString()
-  direccion?: string | null;
-
   @ApiPropertyOptional({ example: "Calle 10" })
   @IsOptional()
-  @Transform(({ obj }) => obj.entreCalle1 ?? obj.entre_calle_1)
+  @Transform(({ obj }) => obj.calle1 ?? obj.calle_1)
   @IsString()
-  entreCalle1?: string | null;
+  calle1?: string | null;
 
   @ApiPropertyOptional({ example: "Calle 12" })
   @IsOptional()
-  @Transform(({ obj }) => obj.entreCalle2 ?? obj.entre_calle_2)
+  @Transform(({ obj }) => obj.calle2 ?? obj.calle_2)
   @IsString()
-  entreCalle2?: string | null;
+  calle2?: string | null;
+
+  @ApiPropertyOptional({ example: "Calle 14" })
+  @IsOptional()
+  @Transform(({ obj }) => obj.calle3 ?? obj.calle_3)
+  @IsString()
+  calle3?: string | null;
 
   @ApiPropertyOptional({ example: [1, 2], type: [Number] })
   @IsOptional()

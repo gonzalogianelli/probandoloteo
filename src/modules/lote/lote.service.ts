@@ -155,9 +155,9 @@ async create(dto: CreateLoteDto): Promise<ResponseDTO<any>> {
           superficie: money(dto.largo) * money(dto.ancho),
           precio: money(dto.precio),
           estado: dto.estado ?? LoteEstado.LIBRE,
-          direccion: dto.direccion ?? null,
-          entreCalle1: dto.entreCalle1 ?? null,
-          entreCalle2: dto.entreCalle2 ?? null,
+          calle1: dto.calle1 ?? null,
+          calle2: dto.calle2 ?? null,
+          calle3: dto.calle3 ?? null,
         });
         const saved = await manager.getRepository(Lote).save(lote);
 
@@ -281,12 +281,10 @@ async create(dto: CreateLoteDto): Promise<ResponseDTO<any>> {
     lote.superficie = money(lote.largo) * money(lote.ancho);
     if (dto.precio !== undefined) lote.precio = money(dto.precio);
     if (dto.estado !== undefined) lote.estado = dto.estado;
-    if (dto.direccion !== undefined) lote.direccion = dto.direccion ?? null;
-    if (dto.entreCalle1 !== undefined)
-      lote.entreCalle1 = dto.entreCalle1 ?? null;
-    if (dto.entreCalle2 !== undefined)
-      lote.entreCalle2 = dto.entreCalle2 ?? null;
-
+    if (dto.calle1 !== undefined) lote.calle1 = dto.calle1 ?? null;
+    if (dto.calle2 !== undefined) lote.calle2 = dto.calle2 ?? null;
+    if (dto.calle3 !== undefined) lote.calle3 = dto.calle3 ?? null;
+    
     let servicioIds: number[] | undefined = undefined;
     let servicios: Servicio[] = [];
 
