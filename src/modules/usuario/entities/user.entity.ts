@@ -19,9 +19,6 @@ export class User {
   @JoinColumn({ name: "role_id" })
   role!: Role;
 
-  @Column({ name: "client_id", type: "int", nullable: true }) clientId!:
-    | number
-    | null;
 
   @Column({ type: "varchar", length: 120 }) nombre!: string;
   @Column({ type: "varchar", length: 120 }) apellido!: string;
@@ -37,9 +34,7 @@ export class User {
     select: false,
   })
   passwordHash!: string;
- @Column({ type: "boolean", default: true })
-activo: boolean;
-
+ 
   @CreateDateColumn({ name: "created_at", type: "datetime", precision: 6 })
   createdAt!: Date;
   @UpdateDateColumn({ name: "updated_at", type: "datetime", precision: 6 })

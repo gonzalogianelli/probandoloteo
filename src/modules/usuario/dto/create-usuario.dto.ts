@@ -10,12 +10,6 @@ import {
   Min,
 } from "class-validator";
 export class CreateUsuarioDto {
-  @ApiProperty({ example: 1 }) @IsInt() @Min(1) roleId!: number;
-  @ApiPropertyOptional({ example: 1 })
-  @IsOptional()
-  @IsInt()
-  @Min(1)
-  clientId?: number | null;
   @ApiProperty({ example: "Juan" })
   @IsString()
   @IsNotEmpty()
@@ -41,8 +35,5 @@ export class CreateUsuarioDto {
   @IsNotEmpty()
   @Length(6, 100)
   password!: string;
-  @ApiPropertyOptional({ example: true })
-  @IsOptional()
-  @IsBoolean()
-  activo?: boolean;
+
 }
