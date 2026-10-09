@@ -42,6 +42,7 @@ let MedioController = class MedioController {
 };
 __decorate([
     Get(),
+    Roles("ADMIN", "COBRANZA"),
     ApiOperation({ summary: "Obtener todos los registros" }),
     ApiResponse({
         status: 200,
@@ -55,6 +56,7 @@ __decorate([
 ], MedioController.prototype, "findAll", null);
 __decorate([
     Get(":id"),
+    Roles("ADMIN", "COBRANZA"),
     ApiOperation({ summary: "Obtener un registro por ID" }),
     ApiParam({ name: "id", type: Number }),
     ApiResponse({ status: 200, description: "Registro obtenido correctamente" }),

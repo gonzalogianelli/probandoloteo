@@ -12,6 +12,7 @@ import { Manzana } from "../../modules/manzana/entities/manzana.entity.js";
 import { Lote } from "../../modules/lote/entities/lote.entity.js";
 import { Servicio } from "../../modules/servicio/entities/servicio.entity.js";
 import { LoteServicio } from "../../modules/lote-servicio/entities/lote-servicio.entity.js";
+import { MedioPago } from "../../modules/medio/entities/medio.entity.js";
 
 // Seeders
 import { seedRoles } from "./role.seeder.js";
@@ -20,6 +21,7 @@ import { seedUsers } from "./user.seeder.js";
 import { seedManzanas } from "./manzana.seeder.js";
 import { seedLotes } from "./lote.seeder.js";
 import { seedServicios } from "./servicio.seeder.js";
+import { seedMediosPago } from "./medio-pago.seeder.js";
 
 const AppDataSource = new DataSource({
   type: "mysql",
@@ -28,7 +30,7 @@ const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME || "root",
   password: process.env.DB_PASSWORD || "",
   database: process.env.DB_DATABASE || "loteo_balcarce_norte",
-  entities: [Role, User, Loteo, Manzana, Lote, Servicio, LoteServicio],
+  entities: [Role, User, Loteo, Manzana, Lote, Servicio, LoteServicio, MedioPago],
   synchronize: false,
 });
 
@@ -39,23 +41,27 @@ async function run() {
   try {
     console.log("🌱 Iniciando ejecución ordenada de seeders...\n");
 
-    console.log("1/6 Ejecutando Seeder de Roles...");
+    console.log("1/7 Ejecutando Seeder de Roles...");
     const roles = await seedRoles(AppDataSource);
 
-    console.log("2/6 Ejecutando Seeder de Loteos...");
+    console.log("2/7 Ejecutando Seeder de Loteos...");
     const loteos = await seedLoteos(AppDataSource);
 
-    console.log("3/6 Ejecutando Seeder de Usuarios...");
+    console.log("3/7 Ejecutando Seeder de Usuarios...");
     await seedUsers(AppDataSource, roles);
 
-    console.log("4/6 Ejecutando Seeder de Manzanas...");
+    console.log("4/7 Ejecutando Seeder de Manzanas...");
     const manzanas = await seedManzanas(AppDataSource, loteos);
 
-    console.log("5/6 Ejecutando Seeder de Lotes...");
-    await seedLotes(AppDataSource, manzanas);
+    console.log("5/7 Ejecutando Seeder de Servicios...");
+    await seedServicios(AppDataSource);        
 
-    console.log("6/6 Ejecutando Seeder de Servicios...");
-    await seedServicios(AppDataSource);    
+    console.log("6/7 Ejecutando Seeder de Lotes...");
+    await seedLotes(AppDataSource, manzanas); 
+
+    console.log("7/7 Ejecutando Seeder de Medios de Pago...");
+    await seedMediosPago(AppDataSource);        
+
 
     console.log("\n✅ ¡Todos los seeders se ejecutaron con éxito!");
   } catch (error) {

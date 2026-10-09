@@ -11,7 +11,6 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 let MedioPago = class MedioPago {
     id;
     nombre;
-    activo;
 };
 __decorate([
     PrimaryGeneratedColumn(),
@@ -21,10 +20,6 @@ __decorate([
     Column({ type: "varchar", length: 120, unique: true }),
     __metadata("design:type", String)
 ], MedioPago.prototype, "nombre", void 0);
-__decorate([
-    Column({ default: true }),
-    __metadata("design:type", Boolean)
-], MedioPago.prototype, "activo", void 0);
 MedioPago = __decorate([
     Entity("medios_pago")
 ], MedioPago);

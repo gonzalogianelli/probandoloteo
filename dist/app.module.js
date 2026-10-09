@@ -75,7 +75,7 @@ AppModule = __decorate([
                         PagoCuota,
                         PagoMedio,
                     ],
-                    synchronize: false,
+                    synchronize: true,
                 }),
             }),
             JwtModule.registerAsync({
