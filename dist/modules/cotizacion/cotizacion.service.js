@@ -11,28 +11,28 @@ let CotizacionService = class CotizacionService {
         try {
             const res = await fetch(url, { signal: AbortSignal.timeout(6000) });
             if (!res.ok)
-                throw new Error();
+                throw new Error("Error en la respuesta de la API");
             const raw = await res.json();
             const wanted = ["oficial", "blue", "bolsa"];
-            const cotizaciones = wanted
+            const valoresVenta = wanted
                 .map((tipo) => {
                 const x = raw.find((v) => String(v.nombre ?? v.casa)
                     .toLowerCase()
                     .includes(tipo));
-                return x
-                    ? {
-                        tipo,
-                        compra: Number(x.compra),
-                        venta: Number(x.venta),
-                        fechaActualizacion: x.fechaActualizacion ?? null,
-                    }
-                    : null;
+                return x ? Number(x.venta) : null;
             })
-                .filter(Boolean);
+                .filter((val) => val !== null && !isNaN(val));
+            if (valoresVenta.length === 0) {
+                throw new Error("No se encontraron cotizaciones válidas");
+            }
+            const mayorCotizacion = Math.max(...valoresVenta);
             return {
                 statusCode: 200,
-                message: "Cotización obtenida correctamente",
-                data: { fuente: "Ámbito Financiero vía DolarApi", cotizaciones },
+                message: "Cotización más alta obtenida correctamente",
+                data: {
+                    fuente: "Ámbito Financiero",
+                    dolarMasAltoVenta: mayorCotizacion,
+                },
             };
         }
         catch {

@@ -4,12 +4,7 @@ export declare class CotizacionService {
         message: string;
         data: {
             fuente: string;
-            cotizaciones: ({
-                tipo: string;
-                compra: number;
-                venta: number;
-                fechaActualizacion: any;
-            } | null)[];
+            dolarMasAltoVenta: number;
         };
     }>;
 }

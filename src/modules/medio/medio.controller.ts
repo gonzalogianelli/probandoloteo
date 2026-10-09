@@ -35,6 +35,7 @@ export class MedioController {
   constructor(private readonly service: MedioService) {}
 
   @Get()
+  @Roles("ADMIN", "COBRANZA")
   @ApiOperation({ summary: "Obtener todos los registros" })
   @ApiResponse({
     status: 200,
@@ -46,6 +47,7 @@ export class MedioController {
   }
 
   @Get(":id")
+  @Roles("ADMIN", "COBRANZA")
   @ApiOperation({ summary: "Obtener un registro por ID" })
   @ApiParam({ name: "id", type: Number })
   @ApiResponse({ status: 200, description: "Registro obtenido correctamente" })

@@ -11,6 +11,8 @@ import { Controller, Get, UseGuards } from "@nestjs/common";
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags, } from "@nestjs/swagger";
 import { CotizacionService } from "./cotizacion.service.js";
 import { AuthGuard } from "../../common/guards/auth.guard.js";
+import { RolesGuard } from "../../common/guards/roles.guard.js";
+import { Roles } from "../../common/decorators/roles.decorator.js";
 let CotizacionController = class CotizacionController {
     service;
     constructor(service) {
@@ -22,6 +24,7 @@ let CotizacionController = class CotizacionController {
 };
 __decorate([
     Get("dolar"),
+    Roles("ADMIN", "VENTAS", "COBRANZA"),
     ApiOperation({ summary: "Obtener cotización del dólar" }),
     ApiResponse({ status: 200 }),
     __metadata("design:type", Function),
@@ -31,7 +34,7 @@ __decorate([
 CotizacionController = __decorate([
     ApiTags("Cotización"),
     ApiBearerAuth(),
-    UseGuards(AuthGuard),
+    UseGuards(AuthGuard, RolesGuard),
     Controller("cotizacion"),
     __metadata("design:paramtypes", [CotizacionService])
 ], CotizacionController);
