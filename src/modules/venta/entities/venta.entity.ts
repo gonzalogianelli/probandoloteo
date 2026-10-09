@@ -51,6 +51,10 @@ export class Venta {
   @Column({ name: "fecha_boleto", type: "date", nullable: true }) fechaBoleto!:
     | string
     | null;
+  @Column({ name: "reserva", type: "boolean", default: false }) reserva!: boolean;
+  @Column({ name: "fecha_reserva", type: "date", nullable: true }) fechaReserva!:
+    | string
+    | null;
   @Column({ name: "precio_lista", type: "decimal", precision: 16, scale: 2 })
   precioLista!: number;
   @Column({
@@ -94,6 +98,10 @@ export class Venta {
     | null;
   @Column({ name: "garante1", type: "json", nullable: true })
   garante1!: Record<string, unknown> | null;
+  @Column({ name: "garante2", type: "json", nullable: true })
+  garante2!: Record<string, unknown> | null;
+  @Column({ name: "garante3", type: "json", nullable: true })
+  garante3!: Record<string, unknown> | null;
   @Column({ type: "enum", enum: VentaEstado, default: VentaEstado.ACTIVA })
   estado!: VentaEstado;
   @CreateDateColumn({ name: "created_at", type: "datetime", precision: 6 })
