@@ -35,10 +35,10 @@ export class ServicioController {
   constructor(private readonly service: ServicioService) {}
 
   @Get()
-  @ApiOperation({ summary: "Obtener todos los registros" })
+  @ApiOperation({ summary: "Obtener todos los servicios" })
   @ApiResponse({
     status: 200,
-    description: "Registros obtenidos correctamente",
+    description: "Servicios obtenidos correctamente",
   })
   @ApiResponse({ status: 500, description: "Error interno del servidor" })
   findAll(@Query() query: PaginationDto) {
@@ -46,33 +46,36 @@ export class ServicioController {
   }
 
   @Get(":id")
-  @ApiOperation({ summary: "Obtener un registro por ID" })
+  @ApiOperation({ summary: "Obtener un servicio por ID" })
   @ApiParam({ name: "id", type: Number })
-  @ApiResponse({ status: 200, description: "Registro obtenido correctamente" })
-  @ApiResponse({ status: 404, description: "Registro no encontrado" })
+  @ApiResponse({ status: 200, description: "Servicio obtenido correctamente" })
+  @ApiResponse({ status: 404, description: "Servicio no encontrado" })
   getById(@Param("id", ParseIntPipe) id: number) {
     return this.service.getById(id);
   }
 
   @Post()
-  @ApiOperation({ summary: "Crear un registro" })
+  @ApiOperation({ summary: "Crear un servicio" })
   @ApiBody({ type: CreateServicioDto })
-  @ApiResponse({ status: 201, description: "Registro creado correctamente" })
-  @ApiResponse({ status: 400, description: "Datos inválidos o duplicados" })
+  @ApiResponse({ status: 201, description: "Servicio creado correctamente" })
+  @ApiResponse({
+    status: 400,
+    description: "Datos inválidos o servicio duplicado",
+  })
   create(@Body() dto: CreateServicioDto) {
     return this.service.create(dto);
   }
 
   @Patch(":id")
-  @ApiOperation({ summary: "Actualizar un registro" })
+  @ApiOperation({ summary: "Actualizar un servicio" })
   @ApiParam({ name: "id", type: Number })
   @ApiBody({ type: UpdateServicioDto })
   @ApiResponse({
     status: 200,
-    description: "Registro actualizado correctamente",
+    description: "Servicio actualizado correctamente",
   })
   @ApiResponse({ status: 400, description: "Datos inválidos" })
-  @ApiResponse({ status: 404, description: "Registro no encontrado" })
+  @ApiResponse({ status: 404, description: "Servicio no encontrado" })
   update(
     @Param("id", ParseIntPipe) id: number,
     @Body() dto: UpdateServicioDto,
@@ -81,13 +84,13 @@ export class ServicioController {
   }
 
   @Delete(":id")
-  @ApiOperation({ summary: "Eliminar un registro" })
+  @ApiOperation({ summary: "Eliminar un servicio" })
   @ApiParam({ name: "id", type: Number })
-  @ApiResponse({ status: 200, description: "Registro eliminado correctamente" })
-  @ApiResponse({ status: 404, description: "Registro no encontrado" })
+  @ApiResponse({ status: 200, description: "Servicio eliminado correctamente" })
+  @ApiResponse({ status: 404, description: "Servicio no encontrado" })
   @ApiResponse({
     status: 500,
-    description: "No se puede eliminar por dependencias",
+    description: "No se puede eliminar por registros asociados",
   })
   remove(@Param("id", ParseIntPipe) id: number) {
     return this.service.remove(id);
