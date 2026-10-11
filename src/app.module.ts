@@ -71,7 +71,7 @@ import { UploadModule } from "./modules/upload/upload.module.js";
           PagoCuota,
           PagoMedio,
         ],
-        synchronize: true,
+        synchronize: false,
       }),
     }),
     JwtModule.registerAsync({
