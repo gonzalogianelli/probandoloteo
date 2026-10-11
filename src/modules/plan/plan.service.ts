@@ -39,7 +39,7 @@ export class PlanService {
   }
 
   async getById(id: number): Promise<ResponseDTO<PlanPago>> {
-    const data = await this.repository.findOne({ where: { id } as any });
+    const data = await this.repository.findOne({ where: { id } });
     if (!data) throw new NotFoundException("PlanPago no encontrado");
     return {
       statusCode: HttpStatus.OK,
@@ -103,7 +103,7 @@ export class PlanService {
   }
 
   async remove(id: number): Promise<ResponseDTO> {
-    const current = await this.repository.findOne({ where: { id } as any });
+    const current = await this.repository.findOne({ where: { id } });
     if (!current) throw new NotFoundException("PlanPago no encontrado");
     try {
       await this.repository.softRemove(current);
