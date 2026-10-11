@@ -50,9 +50,8 @@ export class CreateUsuarioDto {
   @IsNotEmpty()
   @Length(6, 100)
   password!: string;
-/*
   @ApiPropertyOptional({ example: true })
   @IsOptional()
   @IsBoolean()
-  activo?: boolean;*/
+  activo?: boolean;
 }

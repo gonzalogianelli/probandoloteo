@@ -25,11 +25,13 @@ export class RolService {
     limit = 10,
     orderby?: string,
   ): Promise<ResponseDTO<Role[]>> {
+    console.log("VALORES RECIBIDOS:", { skip, limit, orderby, tipoSkip: typeof skip, tipoLimit: typeof limit });
+
     const order = resolveOrder(this.repository, orderby);
 
     const data = await this.repository.find({
-      skip,
-      take: limit,
+      skip: Number(skip),
+      take: Number(limit),
       ...(order ? { order } : {}),
     });
 

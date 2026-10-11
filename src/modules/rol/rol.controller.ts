@@ -42,7 +42,10 @@ export class RolController {
   })
   @ApiResponse({ status: 500, description: "Error interno del servidor" })
   findAll(@Query() query: PaginationDto) {
-    return this.service.findAll(query.skip, query.limit, query.orderby);
+    const skip = Number(query.skip) || 0;
+    const limit = Number(query.limit) || 10;
+    return this.service.findAll(skip, limit, query.orderby);
+    //return this.service.findAll(query.skip, query.limit, query.orderby);
   }
 
   @Get(":id")
