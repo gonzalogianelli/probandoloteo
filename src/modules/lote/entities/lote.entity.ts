@@ -20,7 +20,7 @@ export enum LoteEstado {
 }
 
 @Entity("lotes")
-@Unique("uq_lote_manzana_codigo", ["manzanaId", "codigo"])
+@Unique("uq_lote_manzana_nombre", ["manzanaId", "nombre"])
 export class Lote {
   @PrimaryGeneratedColumn()
   id!: number;
@@ -36,8 +36,8 @@ export class Lote {
   @JoinColumn({ name: "manzana_id" })
   manzana!: Manzana;
 
-  @Column({ type: "varchar", length: 50 })
-  codigo!: string;
+  @Column({ type: "varchar", length: 100 })
+  nombre!: string;
 
   @Column({ type: "decimal", precision: 12, scale: 2, default: 0 })
   largo!: number;
@@ -54,24 +54,14 @@ export class Lote {
   @Column({ type: "enum", enum: LoteEstado, default: LoteEstado.LIBRE })
   estado!: LoteEstado;
 
-  @Column({ type: "varchar", length: 180, nullable: true })
-  direccion!: string | null;
+  @Column({ name: "calle_1", type: "varchar", length: 180, nullable: true })
+  calle1!: string | null;
 
-  @Column({
-    name: "entre_calle_1",
-    type: "varchar",
-    length: 180,
-    nullable: true,
-  })
-  entreCalle1!: string | null;
+  @Column({ name: "calle_2", type: "varchar", length: 180, nullable: true })
+  calle2!: string | null;
 
-  @Column({
-    name: "entre_calle_2",
-    type: "varchar",
-    length: 180,
-    nullable: true,
-  })
-  entreCalle2!: string | null;
+  @Column({ name: "calle_3", type: "varchar", length: 180, nullable: true })
+  calle3!: string | null;
 
   @OneToMany("LoteServicio", "lote")
   servicios!: LoteServicio[];
@@ -84,4 +74,6 @@ export class Lote {
 
   @DeleteDateColumn({ name: "deleted_at", type: "datetime", precision: 6 })
   deletedAt?: Date;
+  direccion: string | null;
+  entreCalle1: string | null;
 }

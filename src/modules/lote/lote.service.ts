@@ -115,7 +115,7 @@ export class LoteService {
     };
   }
 
-async create(dto: CreateLoteDto): Promise<ResponseDTO<any>> {
+  async create(dto: CreateLoteDto): Promise<ResponseDTO<any>> {
     const manzana = await this.manzanas.findOneBy({ id: dto.manzanaId });
     if (!manzana)
       throw new BadRequestException("La manzana indicada no existe");
@@ -149,7 +149,7 @@ async create(dto: CreateLoteDto): Promise<ResponseDTO<any>> {
       const id = await this.dataSource.transaction(async (manager) => {
         const lote = manager.getRepository(Lote).create({
           manzanaId: dto.manzanaId,
-          codigo: dto.codigo,
+          nombre: dto.nombre,
           largo: money(dto.largo),
           ancho: money(dto.ancho),
           superficie: money(dto.largo) * money(dto.ancho),
@@ -158,7 +158,7 @@ async create(dto: CreateLoteDto): Promise<ResponseDTO<any>> {
           direccion: dto.direccion ?? null,
           entreCalle1: dto.entreCalle1 ?? null,
           entreCalle2: dto.entreCalle2 ?? null,
-        });
+        } as Partial<Lote>);
         const saved = await manager.getRepository(Lote).save(lote);
 
         if (servicios.length > 0) {
@@ -191,7 +191,7 @@ async create(dto: CreateLoteDto): Promise<ResponseDTO<any>> {
     }
   }
 
- /*
+  /*
   async create(dto: CreateLoteDto): Promise<ResponseDTO<any>> {
     const manzana = await this.manzanas.findOneBy({ id: dto.manzanaId });
     if (!manzana)
@@ -275,7 +275,7 @@ async create(dto: CreateLoteDto): Promise<ResponseDTO<any>> {
       lote.manzanaId = dto.manzanaId;
     }
 
-    if (dto.codigo !== undefined) lote.codigo = dto.codigo;
+    if (dto.nombre !== undefined) lote.nombre = dto.nombre;
     if (dto.largo !== undefined) lote.largo = money(dto.largo);
     if (dto.ancho !== undefined) lote.ancho = money(dto.ancho);
     lote.superficie = money(lote.largo) * money(lote.ancho);
@@ -285,7 +285,7 @@ async create(dto: CreateLoteDto): Promise<ResponseDTO<any>> {
     if (dto.entreCalle1 !== undefined)
       lote.entreCalle1 = dto.entreCalle1 ?? null;
     if (dto.entreCalle2 !== undefined)
-      lote.entreCalle2 = dto.entreCalle2 ?? null;
+      lote.entreCalle1 = dto.entreCalle2 ?? null;
 
     let servicioIds: number[] | undefined = undefined;
     let servicios: Servicio[] = [];
@@ -338,7 +338,7 @@ async create(dto: CreateLoteDto): Promise<ResponseDTO<any>> {
     } catch (error: any) {
       if (error?.code === "ER_DUP_ENTRY")
         throw new BadRequestException(
-          "Ya existe un lote con ese código dentro de la manzana",
+          "Ya existe un lote con ese nombre dentro de la manzana",
         );
       if (error instanceof BadRequestException) throw error;
       throw new InternalServerErrorException(
