@@ -1,5 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import {
+  IsBoolean,
   IsDateString,
   IsEnum,
   IsInt,
@@ -28,6 +29,14 @@ export class CreateVentaDto {
   @IsOptional()
   @IsDateString()
   fechaBoleto?: string | null;
+  @ApiPropertyOptional({ example: true })
+  @IsOptional()
+  @IsBoolean()
+  reserva?: boolean;
+  @ApiPropertyOptional({ example: "2026-10-01" })
+  @IsOptional()
+  @IsDateString()
+  fechaReserva?: string | null;
   @ApiProperty({ example: 18000000 }) @IsNumber() @Min(0) precioLista!: number;
   @ApiPropertyOptional({ example: 0 })
   @IsOptional()
@@ -82,4 +91,34 @@ export class CreateVentaDto {
   @IsOptional()
   @IsObject()
   garante1?: Record<string, unknown> | null;
+  @ApiPropertyOptional({
+    type: "object",
+    additionalProperties: true,
+    example: {
+      nombre: "Carlos",
+      apellido: "Pérez",
+      dni: "25123456",
+      telefono: "2264111111",
+      email: "carlos@example.com",
+      domicilio: "Calle 2",
+    },
+  })
+  @IsOptional()
+  @IsObject()
+  garante2?: Record<string, unknown> | null;
+  @ApiPropertyOptional({
+    type: "object",
+    additionalProperties: true,
+    example: {
+      nombre: "María",
+      apellido: "Rodríguez",
+      dni: "28123456",
+      telefono: "2264222222",
+      email: "maria@example.com",
+      domicilio: "Calle 3",
+    },
+  })
+  @IsOptional()
+  @IsObject()
+  garante3?: Record<string, unknown> | null;
 }
