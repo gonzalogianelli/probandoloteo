@@ -82,7 +82,7 @@ async function main() {
           passwordHash: await bcrypt.hash(pass, 12),
           roleId: role.id,
           clientId: null,
-          activo: true,
+         
         });
         await ur.save(u);
       }

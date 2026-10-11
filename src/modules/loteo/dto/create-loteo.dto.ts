@@ -22,8 +22,4 @@ export class CreateLoteoDto {
   @IsString()
   @Length(0, 255)
   ubicacion?: string | null;
-  @ApiPropertyOptional({ example: true })
-  @IsOptional()
-  @IsBoolean()
-  activo?: boolean;
 }

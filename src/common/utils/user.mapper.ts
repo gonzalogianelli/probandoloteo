@@ -11,6 +11,6 @@ export function publicUser(user: User) {
     dni: user.dni,
     email: user.email,
     telefono: user.telefono,
-    activo: user.activo,
+  
   };
 }
