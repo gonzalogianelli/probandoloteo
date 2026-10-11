@@ -36,15 +36,18 @@ export class PagoService {
   ) {}
 
   async findAll(q: PaginationDto, user?: any): Promise<ResponseDTO<any[]>> {
+    const skip = Number(q?.skip) || 0;
+    const limit = Number(q?.limit) || 10;
+
     const qb = this.pagos
       .createQueryBuilder("p")
       .leftJoinAndSelect("p.venta", "v")
       .leftJoinAndSelect("v.comprador", "comprador")
       .leftJoinAndSelect("v.vendedor", "vendedor")
-      .orderBy("p.fecha_pago", "DESC")
+      .orderBy("p.fechaPago", "DESC")
       .addOrderBy("p.id", "DESC")
-      .skip(q.skip)
-      .take(q.limit);
+      .skip(skip)
+      .take(limit);
     if (user?.role === "CLIENTE")
       qb.andWhere("v.comprador_id = :compradorId", { compradorId: user.id });
     const data = await qb.getMany();
