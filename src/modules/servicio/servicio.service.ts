@@ -35,7 +35,7 @@ export class ServicioService {
 
     return {
       statusCode: HttpStatus.OK,
-      message: "servicios obtenidos correctamente",
+      message: "Servicios obtenidos correctamente",
       data,
     };
   }

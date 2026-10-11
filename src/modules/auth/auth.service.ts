@@ -27,7 +27,7 @@ export class AuthService {
   async login(dto: LoginDto) {
     const u = await this.findByDniWithPassword(dto.dni.trim());
     if (!u) throw new UnauthorizedException("Usuario no encontrado por DNI");
-    if (!u.activo) throw new UnauthorizedException("El usuario está inactivo");
+   
 /*
     if (dto.rol && u.role?.nombre !== dto.rol)
       throw new UnauthorizedException(

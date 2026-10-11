@@ -24,7 +24,7 @@ export class CreateLoteDto {
   @IsString()
   @IsNotEmpty()
   @Length(1, 50)
-  codigo!: string;
+  nombre!: string;
 
   @ApiProperty({ example: 30 })
   @Type(() => Number)

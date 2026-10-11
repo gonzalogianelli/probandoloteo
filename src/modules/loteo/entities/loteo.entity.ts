@@ -21,9 +21,6 @@ export class Loteo {
   @Column({ type: "varchar", length: 255, nullable: true })
   ubicacion!: string | null;
 
-  @Column({ type: "boolean", default: true })
-  activo!: boolean;
-
   @CreateDateColumn({ name: "created_at", type: "datetime", precision: 6 })
   createdAt!: Date;
 
